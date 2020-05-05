@@ -28,3 +28,8 @@ for x in response["list"]:
     print(x["definition"])
     
 #print(response["list"][0]["definition"])
+
+with open ("src/" + user_input + "txt", "w+") as text_file:
+    text_file.write(response["list"][0]["definition"])
+text_file.close()
+    
