@@ -1,4 +1,4 @@
-import requests, os
+import requests, os, sys
 import json
 # Retrieve your API credentials from the .env file
 if os.getenv("API_KEY") is None or os.getenv("API_KEY") == "":
@@ -24,12 +24,18 @@ headers = {
 response = requests.request("GET", url, headers=headers, params=querystring)
 response = response.json()
 
+data = []
 for x in response["list"]:
-    print(x["definition"])
+    data.append(x["definition"])
+    print('\n'.join(data))
     
 #print(response["list"][0]["definition"])
 
-with open ("src/" + user_input + "txt", "w+") as text_file:
-    text_file.write(response["list"][0]["definition"])
-text_file.close()
-    
+with open("src/" + user_input + ".json", "w+") as json_file:
+    test = json.dumps(data)
+    json_file.write(test)
+    json_file.close()
+
+# print("This is the name of the script: ", sys.argv[0])
+# print("Number of arguments: ", len(sys.argv))
+# print("The arguments are: " , str(sys.argv))
