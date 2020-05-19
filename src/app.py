@@ -9,8 +9,10 @@ if os.getenv("API_KEY") is None or os.getenv("API_KEY") == "":
 API_HOST = os.getenv("API_HOST")
 API_KEY = os.getenv("API_KEY")
 
-# continue with your application here
-user_input = input("What term do you want to look for?")
+if len(sys.argv) == 1:
+    user_input = input("What term do you want to look for?")
+else:
+    user_input = sys.argv[1]
 
 url = "https://mashape-community-urban-dictionary.p.rapidapi.com/define"
 
